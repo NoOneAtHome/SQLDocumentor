@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+backend/dist/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+
+# App data / secrets
+.env
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+sqldoc.yaml
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+.claude/settings.local.json
+
+# Tooling artifacts
+.playwright-mcp/

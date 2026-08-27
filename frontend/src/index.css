@@ -1,0 +1,367 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@xyflow/react/dist/style.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Object-type colours — used identically by tree icons, badges, node strips, minimap, legend. */
+  --color-obj-table: var(--obj-table);
+  --color-obj-view: var(--obj-view);
+  --color-obj-proc: var(--obj-proc);
+  --color-obj-function: var(--obj-function);
+  --color-obj-trigger: var(--obj-trigger);
+  --color-obj-external: var(--obj-external);
+  --color-obj-misc: var(--obj-misc);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+
+  --radius-sm: calc(var(--radius) * 0.66);
+  --radius-md: calc(var(--radius) * 0.83);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.33);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2.66);
+  --radius-4xl: calc(var(--radius) * 3.33);
+}
+
+:root {
+  --radius: 0.375rem; /* 6px */
+
+  --background: oklch(0.992 0.001 260);
+  --foreground: oklch(0.21 0.012 262);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.012 262);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.012 262);
+  --primary: oklch(0.52 0.21 277);
+  --primary-foreground: oklch(0.985 0.005 277);
+  --secondary: oklch(0.965 0.004 262);
+  --secondary-foreground: oklch(0.28 0.012 262);
+  --muted: oklch(0.965 0.004 262);
+  --muted-foreground: oklch(0.5 0.016 262);
+  --accent: oklch(0.955 0.012 277);
+  --accent-foreground: oklch(0.32 0.1 277);
+  --destructive: oklch(0.577 0.245 27.3);
+  --border: oklch(0.905 0.006 262);
+  --input: oklch(0.905 0.006 262);
+  --ring: oklch(0.62 0.17 277);
+  --chart-1: oklch(0.52 0.21 277);
+  --chart-2: oklch(0.6 0.12 190);
+  --chart-3: oklch(0.7 0.16 70);
+  --chart-4: oklch(0.55 0.17 255);
+  --chart-5: oklch(0.6 0.2 25);
+  --sidebar: oklch(0.975 0.003 262);
+  --sidebar-foreground: oklch(0.24 0.012 262);
+  --sidebar-primary: oklch(0.52 0.21 277);
+  --sidebar-primary-foreground: oklch(0.985 0.005 277);
+  --sidebar-accent: oklch(0.935 0.008 262);
+  --sidebar-accent-foreground: oklch(0.21 0.012 262);
+  --sidebar-border: oklch(0.905 0.006 262);
+  --sidebar-ring: oklch(0.62 0.17 277);
+
+  --obj-table: oklch(0.55 0.17 255);
+  --obj-view: oklch(0.58 0.12 190);
+  --obj-proc: oklch(0.55 0.2 300);
+  --obj-function: oklch(0.7 0.155 70);
+  --obj-trigger: oklch(0.6 0.2 25);
+  --obj-external: oklch(0.62 0.01 262);
+  --obj-misc: oklch(0.55 0.05 250);
+
+  --success: oklch(0.62 0.15 155);
+  --warning: oklch(0.72 0.16 70);
+  --info: oklch(0.6 0.15 240);
+
+  --edge-catalog: oklch(0.68 0.012 262);
+  --edge-fk: oklch(0.58 0.17 255);
+  --edge-trigger: oklch(0.62 0.2 10);
+  --edge-parsed: oklch(0.58 0.2 300);
+  --edge-synonym: oklch(0.6 0.05 250);
+  --conf-exact: oklch(0.55 0.13 190);
+  --conf-inferred: oklch(0.55 0.19 277);
+  --conf-unresolved: oklch(0.72 0.16 70);
+
+  --shiki-bg: oklch(0.985 0.002 262);
+}
+
+.dark {
+  --background: oklch(0.165 0.008 262);
+  --foreground: oklch(0.93 0.006 262);
+  --card: oklch(0.2 0.008 262);
+  --card-foreground: oklch(0.93 0.006 262);
+  --popover: oklch(0.21 0.008 262);
+  --popover-foreground: oklch(0.93 0.006 262);
+  --primary: oklch(0.7 0.16 277);
+  --primary-foreground: oklch(0.15 0.03 277);
+  --secondary: oklch(0.25 0.008 262);
+  --secondary-foreground: oklch(0.93 0.006 262);
+  --muted: oklch(0.24 0.008 262);
+  --muted-foreground: oklch(0.68 0.012 262);
+  --accent: oklch(0.27 0.03 277);
+  --accent-foreground: oklch(0.88 0.06 277);
+  --destructive: oklch(0.704 0.191 22.2);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.6 0.15 277);
+  --chart-1: oklch(0.7 0.16 277);
+  --chart-2: oklch(0.72 0.12 190);
+  --chart-3: oklch(0.78 0.15 70);
+  --chart-4: oklch(0.68 0.16 255);
+  --chart-5: oklch(0.7 0.18 25);
+  --sidebar: oklch(0.14 0.008 262);
+  --sidebar-foreground: oklch(0.9 0.006 262);
+  --sidebar-primary: oklch(0.7 0.16 277);
+  --sidebar-primary-foreground: oklch(0.15 0.03 277);
+  --sidebar-accent: oklch(0.23 0.008 262);
+  --sidebar-accent-foreground: oklch(0.95 0.006 262);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.6 0.15 277);
+
+  --obj-table: oklch(0.7 0.15 255);
+  --obj-view: oklch(0.74 0.12 190);
+  --obj-proc: oklch(0.72 0.17 300);
+  --obj-function: oklch(0.8 0.15 75);
+  --obj-trigger: oklch(0.72 0.18 25);
+  --obj-external: oklch(0.6 0.01 262);
+  --obj-misc: oklch(0.7 0.05 250);
+
+  --success: oklch(0.72 0.15 155);
+  --warning: oklch(0.8 0.15 75);
+  --info: oklch(0.72 0.14 240);
+
+  --edge-catalog: oklch(0.5 0.012 262);
+  --edge-fk: oklch(0.68 0.15 255);
+  --edge-trigger: oklch(0.7 0.18 10);
+  --edge-parsed: oklch(0.7 0.17 300);
+  --edge-synonym: oklch(0.65 0.05 250);
+  --conf-exact: oklch(0.72 0.12 190);
+  --conf-inferred: oklch(0.7 0.16 277);
+  --conf-unresolved: oklch(0.8 0.15 75);
+
+  --shiki-bg: oklch(0.18 0.008 262);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01', 'calt';
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground text-[13px] leading-5;
+    overscroll-behavior-y: none;
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+  code,
+  kbd,
+  pre,
+  .font-mono {
+    font-feature-settings: 'calt', 'liga' 0;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 22%, transparent);
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--foreground) 18%, transparent);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklch, var(--foreground) 32%, transparent);
+    background-clip: padding-box;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility hairline {
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Object-type colour helpers: `data-kind-color="table"` → colour tokens.
+ * ------------------------------------------------------------------------- */
+[data-kind-color='table'] { --kind: var(--obj-table); }
+[data-kind-color='view'] { --kind: var(--obj-view); }
+[data-kind-color='proc'] { --kind: var(--obj-proc); }
+[data-kind-color='function'] { --kind: var(--obj-function); }
+[data-kind-color='trigger'] { --kind: var(--obj-trigger); }
+[data-kind-color='external'] { --kind: var(--obj-external); }
+[data-kind-color='misc'] { --kind: var(--obj-misc); }
+
+/* ---------------------------------------------------------------------------
+ * shiki dual theme (defaultColor: false emits --shiki-light / --shiki-dark vars)
+ * ------------------------------------------------------------------------- */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+}
+.shiki {
+  background-color: var(--shiki-bg) !important;
+}
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark);
+}
+.shiki code {
+  display: block;
+  counter-reset: line;
+}
+.shiki .line {
+  display: inline-block;
+  width: 100%;
+  min-height: 1.4em;
+}
+.shiki .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 3ch;
+  margin-right: 1.5ch;
+  padding-right: 0.5ch;
+  text-align: right;
+  color: color-mix(in oklch, var(--muted-foreground) 60%, transparent);
+  user-select: none;
+}
+
+/* ---------------------------------------------------------------------------
+ * React Flow overrides — quiet, hairline, theme-aware.
+ * ------------------------------------------------------------------------- */
+.react-flow {
+  --xy-background-color: var(--background);
+  --xy-background-pattern-color: color-mix(in oklch, var(--foreground) 9%, transparent);
+  --xy-edge-stroke: var(--edge-catalog);
+  --xy-edge-stroke-width: 1.25;
+  --xy-edge-stroke-selected: var(--primary);
+  --xy-minimap-background-color: var(--card);
+  --xy-minimap-mask-background-color: color-mix(in oklch, var(--foreground) 6%, transparent);
+  --xy-minimap-mask-stroke-color: var(--border);
+  --xy-controls-button-background-color: var(--card);
+  --xy-controls-button-background-color-hover: var(--muted);
+  --xy-controls-button-color: var(--foreground);
+  --xy-controls-button-color-hover: var(--foreground);
+  --xy-controls-button-border-color: var(--border);
+  --xy-controls-box-shadow: none;
+  --xy-attribution-background-color: transparent;
+  --xy-handle-background-color: var(--muted-foreground);
+  --xy-handle-border-color: var(--card);
+  --xy-node-border-radius: var(--radius);
+  --xy-node-background-color: var(--card);
+  --xy-node-color: var(--foreground);
+  --xy-node-boxshadow-hover: none;
+  --xy-node-boxshadow-selected: none;
+  --xy-node-border: none;
+  --xy-node-border-selected: none;
+}
+.react-flow__node {
+  font-size: 12px;
+}
+.react-flow__node.is-animating {
+  transition: transform 300ms cubic-bezier(0.2, 0, 0, 1);
+}
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  border-width: 1.5px;
+  min-width: 0;
+  min-height: 0;
+}
+.react-flow__handle.is-port {
+  opacity: 0;
+  pointer-events: none;
+}
+.react-flow__handle.is-port.is-active {
+  opacity: 1;
+}
+.react-flow__edge-path {
+  transition: stroke 120ms ease, stroke-opacity 120ms ease, stroke-width 120ms ease;
+}
+.react-flow__controls {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--border);
+}
+.react-flow__controls-button {
+  width: 26px;
+  height: 26px;
+}
+.react-flow__controls-button svg {
+  max-width: 12px;
+  max-height: 12px;
+}
+.react-flow__minimap {
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--border);
+  overflow: hidden;
+}
+.react-flow__attribution {
+  font-size: 9px;
+  opacity: 0.4;
+}
+.react-flow__edge-textbg {
+  fill: var(--card);
+}

@@ -1,0 +1,28 @@
+# Copy to sqldoc.yaml (git-ignored) and edit. Secrets come from "${ENV_VARS}" (see .env.example).
+# Quote ${VAR} references when they appear inside { } flow mappings - unquoted braces are YAML syntax.
+version: 1
+storage:
+  sqlite_path: ./sqldoc.sqlite
+connections:
+  - name: local-aw
+    host: localhost
+    port: 1433
+    auth: { mode: sql, username: sa, password: "${MSSQL_SA_PASSWORD}" }
+    encrypt: true
+    trust_server_certificate: true
+    databases:
+      - name: AdventureWorks2022
+        schemas: [Sales, HumanResources]
+  # Integrated (Kerberos on macOS/Linux via `kinit`, SSPI on Windows). Host must be the FQDN matching the SPN.
+  # - name: prod-dw
+  #   host: sqlprod01.corp.example.com
+  #   port: 1433
+  #   auth: { mode: integrated }
+  #   databases:
+  #     - { name: DW, schemas: [dbo] }
+  #     - { name: Staging, schemas: [etl] }
+scan:
+  cascade_foreign_keys: true
+  include_triggers_of_cascaded_tables: true
+  collect_stats: true
+  parse_lineage: true
